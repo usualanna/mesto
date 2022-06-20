@@ -3,6 +3,7 @@
   height: 32px;
   background-image: url(../../../images/close-icon.svg);
   background-size: contain;
+  border: none;
   position: fixed;
   top: calc(50% - 207px);
   left: calc(50% + 223px);

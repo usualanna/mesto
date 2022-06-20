@@ -22,6 +22,9 @@ function openForm(event) {
 function closeForm(event) {
   popup.classList.remove("popup__opened");
   container.classList.remove("popup__opened");
+
+  nameInput.value = ' ';
+  descriptionInput.value = ' ';
 }
 function submitForm(evt) {
   evt.preventDefault();

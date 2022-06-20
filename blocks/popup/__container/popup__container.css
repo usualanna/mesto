@@ -7,7 +7,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  transition: display .3s, width .3s, height .3s;
+  transition: width .3s, height .3s;
   display: none;
 }
 

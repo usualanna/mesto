@@ -15,7 +15,3 @@
 .element__like-button:hover {
   background-image: url(../../../images/like-hover.svg);
 }
-
-.element__like-button:active {
-  background-image: url(../../../images/like-active.svg);
-}

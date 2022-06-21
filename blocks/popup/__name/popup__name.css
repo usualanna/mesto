@@ -1,13 +1,12 @@
 .popup__name {
   margin-top: 43px;
-  height: 27px;
+  min-height: 27px;
   border-bottom: 1px solid #00000033;
   padding-bottom: 5px;
 }
 
 .popup__name:focus {
   border: none;
-  border-bottom: 1px solid #000000;
 }
 
 @media screen and (max-width: 520px) {

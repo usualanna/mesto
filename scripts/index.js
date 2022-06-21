@@ -16,23 +16,14 @@ function openForm(event) {
   nameInput.value = userName.textContent;
   descriptionInput.value = userDescription.textContent;
 
-  popup.classList.add("popup__opened");
-  container.classList.add("popup__opened");
+  popup.classList.add("popup_opened");
 }
 function closeForm(event) {
-  popup.classList.remove("popup__opened");
-  container.classList.remove("popup__opened");
-
-  nameInput.value = ' ';
-  descriptionInput.value = ' ';
+  popup.classList.remove("popup_opened");
 }
 function submitForm(evt) {
   evt.preventDefault();
 
-  if (nameInput.value.trim().length === 0 || descriptionInput.value.trim().length === 0) {
-    alert("Имя или описание не могут быть пустыми");
-    return;
-  }
   userName.textContent = nameInput.value;
   userDescription.textContent = descriptionInput.value;
   

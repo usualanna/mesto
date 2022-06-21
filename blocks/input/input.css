@@ -1,6 +1,6 @@
 .input {
-  width: 358px;
-  margin: 0 36px;
+  width: 100%;
+  margin: 0;
   padding: 0;
   border: none;
   font-style: normal;
@@ -11,12 +11,6 @@
 }
 
 .input:focus {
-  outline: none;
-}
-
-@media screen and (max-width: 520px) {
-  .input {
-    width: 238px;
-    margin: 0 22px;
-  }  
+  outline-style: solid;
+  outline-width: 1px;
 }

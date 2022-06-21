@@ -2,7 +2,7 @@
   background-color: #00000000;
   margin: 0;
   padding: 0;
-  transition: background-image .3s, border .3s;
+  transition: opacity .3s;
 }
 
 .button:hover {

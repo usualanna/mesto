@@ -9,9 +9,9 @@
   background-color: #fff;
   margin: 0 0 0 auto;
   cursor: pointer;
-  transition: all .3s;
+  transition: opacity .3s;
 }
 
 .element__like-button:hover {
-  background-image: url(../../../images/like-hover.svg);
+  opacity: .6;
 }

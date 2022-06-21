@@ -4,15 +4,15 @@
   background-image: url(../../../images/close-icon.svg);
   background-size: contain;
   border: none;
-  position: fixed;
+  position: absolute;
   top: calc(50% - 207px);
   left: calc(50% + 223px);
   cursor: pointer;
-  transition: background-image .3s;
+  transition: opacity .3s;
 }
 
 .popup__close:hover {
-  background-image: url(../../../images/close-icon-grey.svg);
+  opacity: .6;
 }
 
 @media screen and (max-width: 520px) {

@@ -13,8 +13,7 @@
 }
 
 .profile__add-button:hover {
-  border: 2px solid #ffffff99;
-  background-image: url(../../../images/plus-grey.svg);
+  opacity: .6;
 }
 
 @media screen and (max-width: 880px) {

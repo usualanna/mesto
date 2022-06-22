@@ -1,4 +1,4 @@
-.input {
+.popup__input {
   width: 100%;
   margin: 0;
   padding: 0;
@@ -10,7 +10,8 @@
   transition: width .3s;
 }
 
-.input:focus {
+.popup__input:focus {
   outline-style: solid;
   outline-width: 1px;
+  outline-color: #000;
 }

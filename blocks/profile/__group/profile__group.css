@@ -3,3 +3,9 @@
   flex-wrap: nowrap;
   align-items: baseline;
 }
+
+@media screen and (max-width: 880px) {
+  .profile__group {
+    margin-top: 26px;
+  }
+}

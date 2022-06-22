@@ -4,9 +4,8 @@ let submitEdit = document.querySelector(".popup__submit");
 
 let popup = document.querySelector(".popup");
 
-let formElement = document.querySelectorAll("input");
-let nameInput = document.querySelector(".popup__input_name");
-let descriptionInput = document.querySelector(".popup__input_description");
+let nameInput = document.querySelector(".popup__input_type_name");
+let descriptionInput = document.querySelector(".popup__input_type_description");
 
 let userName = document.querySelector(".profile__name");
 let userDescription = document.querySelector(".profile__description");

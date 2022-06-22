@@ -7,7 +7,6 @@
   position: absolute;
   top: calc(50% - 207px);
   left: calc(50% + 223px);
-  cursor: pointer;
   transition: opacity .3s;
 }
 

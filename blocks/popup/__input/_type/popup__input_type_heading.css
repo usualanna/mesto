@@ -1,0 +1,16 @@
+.popup__input_type_heading {
+  margin-top: 43px;
+  min-height: 27px;
+  border-bottom: 1px solid #00000033;
+  padding-bottom: 5px;
+}
+
+.popup__input_type_heading:focus {
+  border: none;
+}
+
+@media screen and (max-width: 540px) {
+  .popup__input_type_heading {
+    margin-top: 70px;
+  }
+}

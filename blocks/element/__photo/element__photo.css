@@ -2,5 +2,10 @@
   display: block;
   border-radius: 10px 10px 0 0;
   width: 282px;
-  min-height: 282px;
+  height: 282px;
+  object-fit: cover;
+}
+
+.element__photo:hover {
+  cursor: pointer;
 }

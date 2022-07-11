@@ -5,3 +5,7 @@
   transition: opacity .3s;
   cursor: pointer;
 }
+
+.button:hover {
+  opacity: .6;
+}

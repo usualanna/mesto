@@ -11,7 +11,3 @@
   cursor: pointer;
   transition: opacity .3s;
 }
-
-.element__like-button:hover {
-  opacity: .6;
-}

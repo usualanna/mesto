@@ -20,11 +20,11 @@
       <div class="profile__info">
         <div class="profile__group">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button type="button" class="profile__edit-button button"></button>
+          <button aria-label="edit-button" type="button" class="profile__edit-button button"></button>
         </div>
         <p class="profile__description">Исследователь океана</p>
       </div>
-      <button type="button" class="profile__add-button button"></button>
+      <button aria-label="new-image" type="button" class="profile__add-button button"></button>
     </section>
 
     <section class="elements">
@@ -33,53 +33,53 @@
   </main>
   
   <footer class="footer">
-    <p class="footer__copyright">© 2020 Mesto Russia</p>
+    <p class="footer__copyright">© 2022 Mesto Russia</p>
   </footer>
 
   <template id="element">
     <article class="element">
-      <button type="button" class="button element__delete"></button>
+      <button aria-label="delete-image" type="button" class="button element__delete"></button>
       <img class="element__photo" src="#" alt="подпись" />
       <div class="element__group">
         <h2 class="element__name"></h2>
-        <button type="button" class="button element__like-button"></button>
+        <button aria-label="like-button" type="button" class="button element__like-button"></button>
       </div>
     </article>
   </template>
 
-  <div id="edit" class="popup">
+  <div id="popup__edit-profile" class="popup">
     <div class="popup__container">
       <p class="popup__title">Редактировать профиль</p>
-      <form name="form-edit" class="popup__form">
+      <form id="edit-profile_submit" name="form-edit" class="popup__form">
         <input class="popup__input popup__input_type_name" type="text" name="name" value="">
         <input class="popup__input popup__input_type_description" type="text" name="description" value="">
-        <button id="edit-submit" class="button popup__submit" type="submit">Сохранить</button>
+        <button class="button popup__submit" type="submit">Сохранить</button>
       </form>
     </div>
-    <button id="edit-close" type="button" class="popup__close button"></button>
+    <button aria-label="close-edit-window" id="edit-profile_close" type="button" class="popup__close button"></button>
   </div>
 
-  <div id="add" class="popup">
+  <div id="popup__add-image" class="popup">
     <div class="popup__container">
       <p class="popup__title">Новое место</p>
-      <form name="form-add" class="popup__form">
-        <input class="popup__input popup__input_type_heading" type="text" name="heading" placeholder="Название" value="">
-        <input class="popup__input popup__input_type_link" type="url" name="link" placeholder="Ссылка на картинку" value="">
-        <button id="add-submit" class="button popup__submit" type="button">Создать</button>
+      <form id="add-image_submit" name="form-add" class="popup__form">
+        <input class="popup__input popup__input_type_heading" type="text" name="heading" placeholder="Название" required>
+        <input class="popup__input popup__input_type_link" type="url" name="link" placeholder="Ссылка на картинку" required>
+        <button class="button popup__submit" type="submit">Создать</button>
       </form>
     </div>
-    <button id="add-close" type="button" class="popup__close button"></button>
+    <button aria-label="close-new-image-window" id="add-image_close" type="button" class="popup__close button"></button>
   </div>
 
-  <div id="full" class="popup-image ">
+  <div id="popup__full-image" class="popup-image">
     <div>
-      <button id="full-close" type="button" class="popup-image__close button"></button>
+      <button aria-label="close-full-image" id="full-image_close" type="button" class="popup-image__close button"></button>
       <img class="popup-image__image" src="#" alt="подпись">
       <h2 class="popup-image__heading"></h2>
     </div>
-    
   </div>
 
+  <script src="./scripts/initial-cards.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 </html>

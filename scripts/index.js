@@ -1,79 +1,58 @@
-const openEdit = document.querySelector('.profile__edit-button');
-const openSubmit = document.querySelector('.profile__add-button')
+//попап редактирования профиля
+const profileEditBtn = document.querySelector('.profile__edit-button');
+const profileEditSubmitBtn = document.querySelector('#edit-profile_submit');
+const profileEditCloseBtn = document.querySelector('#edit-profile_close');
 
-const closeEdit = document.querySelector('#edit-close');
-const closeSubmit = document.querySelector('#add-close');
-const closeFull = document.querySelector('#full-close');
+const popupEditProfile = document.querySelector('#popup__edit-profile');
 
-const submitEdit = document.querySelector('#edit-submit');
-const submitAdd = document.querySelector('#add-submit');
+//попап добавления картинки
+const newImageBtn = document.querySelector('.profile__add-button');
+const newImageSubmitBtn = document.querySelector('#add-image_submit');
+const newImageCloseBtn = document.querySelector('#add-image_close');
 
-const photoFull = document.querySelector('.popup-image');
+const popupAddImage = document.querySelector('#popup__add-image');
 
-let nameInput = document.querySelector('.popup__input_type_name');
-let descriptionInput = document.querySelector('.popup__input_type_description');
+//раскрытие полной картинки
+const imageFull = document.querySelector('.popup-image');
+const imageFullCloseBtn = document.querySelector('#full-image_close');
 
-let userName = document.querySelector('.profile__name');
-let userDescription = document.querySelector('.profile__description');
+const popupFull = document.querySelector('#popup__full-image');
 
-let photoHeading = document.querySelector('.popup__input_type_heading');
-let photoLink = document.querySelector('.popup__input_type_link');
+//
+const nameInput = document.querySelector('.popup__input_type_name');
+const descriptionInput = document.querySelector('.popup__input_type_description');
 
-//фотографии
-const elementTemplate = document.querySelector('#element').content;
+const userName = document.querySelector('.profile__name');
+const userDescription = document.querySelector('.profile__description');
+
+const photoHeading = document.querySelector('.popup__input_type_heading');
+const photoLink = document.querySelector('.popup__input_type_link');
+
+//темплейт фотографии
+const elementTemplate = document.querySelector('#element');
 const elements = document.querySelector('.elements');
 
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-]; 
-
-
-
 //открытие попапов
-function openPopup(id) {
-  let popup = document.querySelector('#' + id);
-
+function openPopupEditProfile() {
   nameInput.value = userName.textContent;
   descriptionInput.value = userDescription.textContent;
 
-  popup.classList.add('popup_opened');
+  popupEditProfile.classList.add('popup_opened');
+}
+
+function openPopupAddImage() {
+  popupAddImage.classList.add('popup_opened');
 }
 
 //закрытие попапов
 function closeEditForm() {
-  let popup = document.querySelector('#edit');
-  popup.classList.remove('popup_opened');
+  popupEditProfile.classList.remove('popup_opened');
 }
 function closeSubmitForm() {
-  let popup = document.querySelector('#add');
-  popup.classList.remove('popup_opened');
+  popupAddImage.classList.remove('popup_opened');
 }
 function closeFullImage() {
-  let popup = document.querySelector('#full');
-  popup.classList.remove('popup_opened');
+  popupFull.classList.remove('popup_opened');
 }
 
 
@@ -90,58 +69,59 @@ function submitEditForm(evt) {
 
 function initialImages() {
   for (let i = 0; i < initialCards.length; i++) {
-    addImage(initialCards[i].link, initialCards[i].name)
+    addImage(createImage(initialCards[i]))
   }
 }
-function addImage(imageLink, imageName) {
-  const elementClone = elementTemplate.cloneNode(true);
-  elementClone.querySelector('.element__photo').src = imageLink;
-  elementClone.querySelector('.element__name').textContent = imageName;
-  elementClone.querySelector('.element__photo').alt = imageName;
+
+function createImage(param) {
+  const elementClone = elementTemplate.content.cloneNode(true);
+  const elementCloneImage = elementClone.querySelector('.element__photo');
+
+  elementCloneImage.src = param.link;
+  elementCloneImage.alt = param.name;
+  elementClone.querySelector('.element__name').textContent = param.name;
 
   //like button
-  elementClone.querySelector('.element__like-button').addEventListener('click', function(evt) {
+  elementClone.querySelector('.element__like-button').addEventListener('click', function (evt) {
     evt.target.classList.toggle('element__like-button_active');
   });
   //delete button
-  elementClone.querySelector('.element__delete').addEventListener('click', function(evt) {
+  elementClone.querySelector('.element__delete').addEventListener('click', function (evt) {
     evt.target.parentElement.remove();
   })
-  
+
   //раскрытие полной картинки
-  elementClone.querySelector('.element__photo').addEventListener('click', function() {
-    photoFull.querySelector('.popup-image__image').src = imageLink;
-    photoFull.querySelector('.popup-image__heading').textContent = imageName;
-    
-    photoFull.classList.add('popup_opened');
+  elementCloneImage.addEventListener('click', function () {
+    imageFull.querySelector('.popup-image__image').src = param.link;
+    imageFull.querySelector('.popup-image__heading').textContent = param.name;
+    imageFull.querySelector('.popup-image__image').alt = param.name;
+
+    imageFull.classList.add('popup_opened');
   })
 
-  elements.prepend(elementClone);
+  return elementClone;
 }
+function addImage(param) {
+  elements.prepend(param);
+}
+
 function submitAddForm(evt) {
   evt.preventDefault();
 
-  addImage(photoLink.value, photoHeading.value);
+  addImage(createImage({link: photoLink.value, name: photoHeading.value}));
 
   closeSubmitForm();
-
-  photoLink.value = '';
-  photoHeading.value = '';
+  newImageSubmitBtn.reset();
 }
 
+profileEditBtn.addEventListener('click', openPopupEditProfile);
+newImageBtn.addEventListener('click', openPopupAddImage);
 
-openEdit.addEventListener('click', function() {
-  openPopup('edit');
-});
-openSubmit.addEventListener('click', function() {
-  openPopup('add');
-});
-closeEdit.addEventListener('click', closeEditForm);
-closeSubmit.addEventListener('click', closeSubmitForm);
-closeFull.addEventListener('click', closeFullImage)
-submitEdit.addEventListener('click', submitEditForm);
-submitAdd.addEventListener('click', submitAddForm);
+profileEditCloseBtn.addEventListener('click', closeEditForm);
+newImageCloseBtn.addEventListener('click', closeSubmitForm);
+imageFullCloseBtn.addEventListener('click', closeFullImage);
 
-
+profileEditSubmitBtn.addEventListener('submit', submitEditForm);
+newImageSubmitBtn.addEventListener('submit', submitAddForm);
 
 initialImages();

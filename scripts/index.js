@@ -29,32 +29,36 @@ const photoHeading = document.querySelector('.popup__input_type_heading');
 const photoLink = document.querySelector('.popup__input_type_link');
 
 //темплейт фотографии
-const elementTemplate = document.querySelector('#element');
+const elementTemplate = document.querySelector('#element').content;
 const elements = document.querySelector('.elements');
 
 //открытие попапов
+function openPopup(popupName) {
+  popupName.classList.add('popup_opened');
+}
 function openPopupEditProfile() {
   nameInput.value = userName.textContent;
   descriptionInput.value = userDescription.textContent;
 
-  popupEditProfile.classList.add('popup_opened');
+  openPopup(popupEditProfile);
 }
-
 function openPopupAddImage() {
-  popupAddImage.classList.add('popup_opened');
+  openPopup(popupAddImage);
 }
 
 //закрытие попапов
+function closePopup(popupName) {
+  popupName.classList.remove('popup_opened')
+}
 function closeEditForm() {
-  popupEditProfile.classList.remove('popup_opened');
+  closePopup(popupEditProfile);
 }
 function closeSubmitForm() {
-  popupAddImage.classList.remove('popup_opened');
+  closePopup(popupAddImage);
 }
 function closeFullImage() {
-  popupFull.classList.remove('popup_opened');
+  closePopup(popupFull);
 }
-
 
 function submitEditForm(evt) {
   evt.preventDefault();
@@ -66,15 +70,13 @@ function submitEditForm(evt) {
 }
 
 //добавление фотографий
-
 function initialImages() {
   for (let i = 0; i < initialCards.length; i++) {
     addImage(createImage(initialCards[i]))
   }
 }
-
 function createImage(param) {
-  const elementClone = elementTemplate.content.cloneNode(true);
+  const elementClone = elementTemplate.querySelector('.element').cloneNode(true);
   const elementCloneImage = elementClone.querySelector('.element__photo');
 
   elementCloneImage.src = param.link;
@@ -87,7 +89,7 @@ function createImage(param) {
   });
   //delete button
   elementClone.querySelector('.element__delete').addEventListener('click', function (evt) {
-    evt.target.parentElement.remove();
+    elementClone.remove();
   })
 
   //раскрытие полной картинки
@@ -96,7 +98,7 @@ function createImage(param) {
     imageFull.querySelector('.popup-image__heading').textContent = param.name;
     imageFull.querySelector('.popup-image__image').alt = param.name;
 
-    imageFull.classList.add('popup_opened');
+    openPopup(imageFull);
   })
 
   return elementClone;
@@ -104,11 +106,10 @@ function createImage(param) {
 function addImage(param) {
   elements.prepend(param);
 }
-
 function submitAddForm(evt) {
   evt.preventDefault();
 
-  addImage(createImage({link: photoLink.value, name: photoHeading.value}));
+  addImage(createImage({ link: photoLink.value, name: photoHeading.value }));
 
   closeSubmitForm();
   newImageSubmitBtn.reset();

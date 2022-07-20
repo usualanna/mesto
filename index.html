@@ -20,11 +20,11 @@
       <div class="profile__info">
         <div class="profile__group">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button aria-label="edit-button" type="button" class="profile__edit-button button"></button>
+          <button aria-label="Редактирование профиля" type="button" class="profile__edit-button button"></button>
         </div>
         <p class="profile__description">Исследователь океана</p>
       </div>
-      <button aria-label="new-image" type="button" class="profile__add-button button"></button>
+      <button aria-label="Добавить новую фотографию" type="button" class="profile__add-button button"></button>
     </section>
 
     <section class="elements">
@@ -38,11 +38,11 @@
 
   <template id="element">
     <article class="element">
-      <button aria-label="delete-image" type="button" class="button element__delete"></button>
+      <button aria-label="Удалить фотографию" type="button" class="button element__delete"></button>
       <img class="element__photo" src="#" alt="подпись" />
       <div class="element__group">
         <h2 class="element__name"></h2>
-        <button aria-label="like-button" type="button" class="button element__like-button"></button>
+        <button aria-label="Поставить лайк" type="button" class="button element__like-button"></button>
       </div>
     </article>
   </template>
@@ -56,7 +56,7 @@
         <button class="button popup__submit" type="submit">Сохранить</button>
       </form>
     </div>
-    <button aria-label="close-edit-window" id="edit-profile_close" type="button" class="popup__close button"></button>
+    <button aria-label="Закрыть редактор профиля" id="edit-profile_close" type="button" class="popup__close button"></button>
   </div>
 
   <div id="popup__add-image" class="popup">
@@ -68,12 +68,12 @@
         <button class="button popup__submit" type="submit">Создать</button>
       </form>
     </div>
-    <button aria-label="close-new-image-window" id="add-image_close" type="button" class="popup__close button"></button>
+    <button aria-label="Закрыть окошко добавления фотографии" id="add-image_close" type="button" class="popup__close button"></button>
   </div>
 
   <div id="popup__full-image" class="popup-image">
     <div>
-      <button aria-label="close-full-image" id="full-image_close" type="button" class="popup-image__close button"></button>
+      <button aria-label="Закрыть полную версию фотографии" id="full-image_close" type="button" class="popup-image__close button"></button>
       <img class="popup-image__image" src="#" alt="подпись">
       <h2 class="popup-image__heading"></h2>
     </div>

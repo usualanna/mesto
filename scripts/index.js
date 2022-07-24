@@ -1,20 +1,19 @@
 //попап редактирования профиля
 const profileEditBtn = document.querySelector('.profile__edit-button');
 const profileEditSubmitBtn = document.querySelector('#edit-profile_submit');
-const profileEditCloseBtn = document.querySelector('#edit-profile_close');
+const profileEdit = document.querySelector('#popup__edit-profile');
 
 const popupEditProfile = document.querySelector('#popup__edit-profile');
 
 //попап добавления картинки
 const newImageBtn = document.querySelector('.profile__add-button');
 const newImageSubmitBtn = document.querySelector('#add-image_submit');
-const newImageCloseBtn = document.querySelector('#add-image_close');
+const newImage = document.querySelector('#popup__add-image');
 
 const popupAddImage = document.querySelector('#popup__add-image');
 
 //раскрытие полной картинки
 const imageFull = document.querySelector('.popup-image');
-const imageFullCloseBtn = document.querySelector('#full-image_close');
 
 const popupFull = document.querySelector('#popup__full-image');
 
@@ -55,6 +54,7 @@ function closeEditForm() {
 }
 function closeSubmitForm() {
   closePopup(popupAddImage);
+  newImageSubmitBtn.reset();
 }
 function closeFullImage() {
   closePopup(popupFull);
@@ -112,15 +112,43 @@ function submitAddForm(evt) {
   addImage(createImage({ link: photoLink.value, name: photoHeading.value }));
 
   closeSubmitForm();
-  newImageSubmitBtn.reset();
 }
 
 profileEditBtn.addEventListener('click', openPopupEditProfile);
 newImageBtn.addEventListener('click', openPopupAddImage);
 
-profileEditCloseBtn.addEventListener('click', closeEditForm);
-newImageCloseBtn.addEventListener('click', closeSubmitForm);
-imageFullCloseBtn.addEventListener('click', closeFullImage);
+profileEdit.addEventListener('click', function (evt) {
+  if (evt.target.classList.contains('popup__close') || evt.target.classList.contains('popup')) {
+    closeEditForm();
+  }
+});
+profileEdit.addEventListener('keydown', function (evt) {
+  if (evt.key === 'Escape') {
+    closeEditForm();
+  }
+});
+
+newImage.addEventListener('click', function (evt) {
+  if (evt.target.classList.contains('popup__close') || evt.target.classList.contains('popup')) {
+    closeSubmitForm();
+  }
+});
+newImage.addEventListener('keydown', function (evt) {
+  if (evt.key === 'Escape') {
+    closeSubmitForm();
+  }
+});
+
+imageFull.addEventListener('click', function (evt) {
+  if (evt.target.classList.contains('popup-image__close') || evt.target.classList.contains('popup_opened')) {
+    closeFullImage();
+  }
+});
+imageFull.addEventListener('keydown', function (evt) {
+  if (evt.key === 'Escape') {
+    closeFullImage();
+  }
+});
 
 profileEditSubmitBtn.addEventListener('submit', submitEditForm);
 newImageSubmitBtn.addEventListener('submit', submitAddForm);

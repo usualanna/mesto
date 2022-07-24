@@ -13,4 +13,5 @@
   align-items: center;
   justify-content: center;
   transition: visibility .3s, opacity .3s;
+  cursor: pointer;
 }

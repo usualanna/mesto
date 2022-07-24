@@ -48,30 +48,34 @@
   </template>
 
   <div id="popup__edit-profile" class="popup">
-    <div class="popup__container">
+    <div class="popup__container"  tabindex="1">
       <p class="popup__title">Редактировать профиль</p>
-      <form id="edit-profile_submit" name="form-edit" class="popup__form">
-        <input class="popup__input popup__input_type_name" type="text" name="name" value="">
-        <input class="popup__input popup__input_type_description" type="text" name="description" value="">
-        <button class="button popup__submit" type="submit">Сохранить</button>
+      <form id="edit-profile_submit" name="form-edit" class="popup__form" novalidate>
+        <input id="name-input" class="popup__input popup__input_type_name" type="text" minlength="2" maxlength="40" name="name" value="" required>
+        <span class="name-input-error popup__error"></span>
+        <input id="description-input" class="popup__input popup__input_type_description" type="text" minlength="2" maxlength="200" name="description" value="" required>
+        <span class="description-input-error popup__error"></span>
+        <button class="button popup__submit popup__submit_invalid" type="submit">Сохранить</button>
       </form>
     </div>
     <button aria-label="Закрыть редактор профиля" id="edit-profile_close" type="button" class="popup__close button"></button>
   </div>
 
-  <div id="popup__add-image" class="popup">
+  <div id="popup__add-image" class="popup" tabindex="1">
     <div class="popup__container">
       <p class="popup__title">Новое место</p>
-      <form id="add-image_submit" name="form-add" class="popup__form">
-        <input class="popup__input popup__input_type_heading" type="text" name="heading" placeholder="Название" required>
-        <input class="popup__input popup__input_type_link" type="url" name="link" placeholder="Ссылка на картинку" required>
-        <button class="button popup__submit" type="submit">Создать</button>
+      <form id="add-image_submit" name="form-add" class="popup__form" novalidate>
+        <input id="heading-input" class="popup__input popup__input_type_heading" type="text" minlength="2" maxlength="30" name="heading" placeholder="Название" required>
+        <span class="heading-input-error popup__error"></span>
+        <input id="link-input" class="popup__input popup__input_type_link" type="url" name="link" placeholder="Ссылка на картинку" required>
+        <span class="link-input-error popup__error"></span>
+        <button class="button popup__submit popup__submit_invalid" type="submit">Создать</button>
       </form>
     </div>
     <button aria-label="Закрыть окошко добавления фотографии" id="add-image_close" type="button" class="popup__close button"></button>
   </div>
 
-  <div id="popup__full-image" class="popup-image">
+  <div id="popup__full-image" class="popup-image" tabindex="1">
     <div>
       <button aria-label="Закрыть полную версию фотографии" id="full-image_close" type="button" class="popup-image__close button"></button>
       <img class="popup-image__image" src="#" alt="подпись">
@@ -79,6 +83,7 @@
     </div>
   </div>
 
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/initial-cards.js"></script>
   <script src="./scripts/index.js"></script>
 </body>

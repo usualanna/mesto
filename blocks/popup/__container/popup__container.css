@@ -6,6 +6,7 @@
   align-self: center;
   margin: 0 auto;
   transition: width .3s, height .3s;
+  cursor: initial;
 }
 
 @media screen and (max-width: 540px) {

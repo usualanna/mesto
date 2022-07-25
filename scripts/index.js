@@ -34,6 +34,7 @@ const elements = document.querySelector('.elements');
 //открытие попапов
 function openPopup(popupName) {
   popupName.classList.add('popup_opened');
+  document.addEventListener('keydown', closeByEscape);
 }
 function openPopupEditProfile() {
   nameInput.value = userName.textContent;
@@ -47,17 +48,26 @@ function openPopupAddImage() {
 
 //закрытие попапов
 function closePopup(popupName) {
-  popupName.classList.remove('popup_opened')
+  popupName.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEscape);
 }
 function closeEditForm() {
   closePopup(popupEditProfile);
+  enableValidation(settings);
 }
 function closeSubmitForm() {
   closePopup(popupAddImage);
   newImageSubmitBtn.reset();
+  enableValidation(settings);
 }
 function closeFullImage() {
   closePopup(popupFull);
+}
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    const popupName = document.querySelector('.popup_opened');
+    closePopup(popupName);
+  }
 }
 
 function submitEditForm(evt) {
@@ -122,30 +132,15 @@ profileEdit.addEventListener('click', function (evt) {
     closeEditForm();
   }
 });
-profileEdit.addEventListener('keydown', function (evt) {
-  if (evt.key === 'Escape') {
-    closeEditForm();
-  }
-});
 
 newImage.addEventListener('click', function (evt) {
   if (evt.target.classList.contains('popup__close') || evt.target.classList.contains('popup')) {
     closeSubmitForm();
   }
 });
-newImage.addEventListener('keydown', function (evt) {
-  if (evt.key === 'Escape') {
-    closeSubmitForm();
-  }
-});
 
 imageFull.addEventListener('click', function (evt) {
   if (evt.target.classList.contains('popup-image__close') || evt.target.classList.contains('popup_opened')) {
-    closeFullImage();
-  }
-});
-imageFull.addEventListener('keydown', function (evt) {
-  if (evt.key === 'Escape') {
     closeFullImage();
   }
 });

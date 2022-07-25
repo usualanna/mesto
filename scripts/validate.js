@@ -1,17 +1,26 @@
+const settings = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__submit_invalid',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_active'
+}
+
 function showInputError(formElement, inputElement, errorMessage) {
   const formError = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.add('popup__input_type_error');
+  inputElement.classList.add(settings.inputErrorClass);
 
   formError.textContent = errorMessage;
-  formError.classList.add('popup__error_active');
+  formError.classList.add(settings.errorClass);
 }
 
 function hideInputError(formElement, inputElement) {
   const formError = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove('popup__input_type_error');
+  inputElement.classList.remove(settings.inputErrorClass);
 
   formError.textContent = '';
-  formError.classList.remove('popup__error_active');
+  formError.classList.remove(settings.errorClass);
 }
 
 function isValid(formElement, inputElement) {
@@ -23,8 +32,8 @@ function isValid(formElement, inputElement) {
 }
 
 function setEventListeners(formElement) {
-  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-  const buttonElement = formElement.querySelector('.popup__submit');
+  const inputList = Array.from(formElement.querySelectorAll(settings.inputSelector));
+  const buttonElement = formElement.querySelector(settings.submitButtonSelector);
 
   toggleButton(inputList, buttonElement);
 
@@ -37,7 +46,7 @@ function setEventListeners(formElement) {
 }
 
 function enableValidation() {
-  const formList = Array.from(document.querySelectorAll('.popup__form'));
+  const formList = Array.from(document.querySelectorAll(settings.formSelector));
 
   formList.forEach(function (formElement) {
     formElement.addEventListener('submit', function (evt) {
@@ -55,10 +64,12 @@ function hasInvalidInput(inputList) {
 
 function toggleButton(inputList, buttonElement) {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add('popup__submit_invalid');
+    buttonElement.classList.add(settings.inactiveButtonClass);
+    buttonElement.setAttribute('disabled', true);
   } else {
-    buttonElement.classList.remove('popup__submit_invalid');
+    buttonElement.classList.remove(settings.inactiveButtonClass);
+    buttonElement.removeAttribute('disabled');
   }
 }
 
-enableValidation();
+enableValidation(settings);

@@ -48,7 +48,7 @@
   </template>
 
   <div id="popup__edit-profile" class="popup">
-    <div class="popup__container"  tabindex="1">
+    <div class="popup__container">
       <p class="popup__title">Редактировать профиль</p>
       <form id="edit-profile_submit" name="form-edit" class="popup__form" novalidate>
         <input id="name-input" class="popup__input popup__input_type_name" type="text" minlength="2" maxlength="40" name="name" value="" required>
@@ -61,7 +61,7 @@
     <button aria-label="Закрыть редактор профиля" id="edit-profile_close" type="button" class="popup__close button"></button>
   </div>
 
-  <div id="popup__add-image" class="popup" tabindex="1">
+  <div id="popup__add-image" class="popup">
     <div class="popup__container">
       <p class="popup__title">Новое место</p>
       <form id="add-image_submit" name="form-add" class="popup__form" novalidate>
@@ -75,7 +75,7 @@
     <button aria-label="Закрыть окошко добавления фотографии" id="add-image_close" type="button" class="popup__close button"></button>
   </div>
 
-  <div id="popup__full-image" class="popup-image" tabindex="1">
+  <div id="popup__full-image" class="popup popup-image">
     <div>
       <button aria-label="Закрыть полную версию фотографии" id="full-image_close" type="button" class="popup-image__close button"></button>
       <img class="popup-image__image" src="#" alt="подпись">

@@ -52,13 +52,19 @@ function closePopup(popupName) {
   document.removeEventListener('keydown', closeByEscape);
 }
 function closeEditForm() {
+  const popupButton = document.querySelector('#edit-profile_submit-button');
   closePopup(popupEditProfile);
-  enableValidation(settings);
+
+  popupButton.classList.add('popup__submit_invalid');
+  popupButton.setAttribute('disabled', true);
 }
 function closeSubmitForm() {
+  const popupButton = document.querySelector('#add-image_submit-button');
   closePopup(popupAddImage);
   newImageSubmitBtn.reset();
-  enableValidation(settings);
+
+  popupButton.classList.add('popup__submit_invalid');
+  popupButton.setAttribute('disabled', true);
 }
 function closeFullImage() {
   closePopup(popupFull);

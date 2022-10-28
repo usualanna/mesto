@@ -1,3 +1,7 @@
+import Card from "./Card.js";
+import FormValidator from './FormValidator.js';
+import { initialCards, validationData } from './constants.js';
+
 //попап редактирования профиля
 const profileEditBtn = document.querySelector('.profile__edit-button');
 const profileEditSubmitBtn = document.querySelector('#edit-profile_submit');
@@ -28,11 +32,11 @@ const photoHeading = document.querySelector('.popup__input_type_heading');
 const photoLink = document.querySelector('.popup__input_type_link');
 
 //темплейт фотографии
-const elementTemplate = document.querySelector('#element').content;
+//const elementTemplate = document.querySelector('#element').content;
 const elements = document.querySelector('.elements');
 
 //открытие попапов
-function openPopup(popupName) {
+export default function openPopup(popupName) {
   popupName.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEscape);
 }
@@ -88,44 +92,53 @@ function submitEditForm(evt) {
 //добавление фотографий
 function initialImages() {
   for (let i = 0; i < initialCards.length; i++) {
-    addImage(createImage(initialCards[i]))
+    addCard(initialCards[i]);
   }
 }
-function createImage(param) {
-  const elementClone = elementTemplate.querySelector('.element').cloneNode(true);
-  const elementCloneImage = elementClone.querySelector('.element__photo');
+//function createImage(param) {
+//  const elementClone = elementTemplate.querySelector('.element').cloneNode(true);
+ /// const elementCloneImage = elementClone.querySelector('.element__photo');
 
-  elementCloneImage.src = param.link;
-  elementCloneImage.alt = param.name;
-  elementClone.querySelector('.element__name').textContent = param.name;
+ // elementCloneImage.src = param.link;
+ // elementCloneImage.alt = param.name;
+ // elementClone.querySelector('.element__name').textContent = param.name;
 
-  //like button
-  elementClone.querySelector('.element__like-button').addEventListener('click', function (evt) {
-    evt.target.classList.toggle('element__like-button_active');
-  });
-  //delete button
-  elementClone.querySelector('.element__delete').addEventListener('click', function (evt) {
-    elementClone.remove();
-  })
+           //like button
+ // elementClone.querySelector('.element__like-button').addEventListener('click', function (evt) {
+ //   evt.target.classList.toggle('element__like-button_active');
+ // });
+           //delete button
+ // elementClone.querySelector('.element__delete').addEventListener('click', function (evt) {
+ //   elementClone.remove();
+ // })
 
-  //раскрытие полной картинки
-  elementCloneImage.addEventListener('click', function () {
-    imageFull.querySelector('.popup-image__image').src = param.link;
-    imageFull.querySelector('.popup-image__heading').textContent = param.name;
-    imageFull.querySelector('.popup-image__image').alt = param.name;
+          //раскрытие полной картинки
+  //elementCloneImage.addEventListener('click', function () {
+   // imageFull.querySelector('.popup-image__image').src = param.link;
+   // imageFull.querySelector('.popup-image__heading').textContent = param.name;
+   // imageFull.querySelector('.popup-image__image').alt = param.name;
 
-    openPopup(imageFull);
-  })
+   // openPopup(imageFull);
+ // })
 
-  return elementClone;
+ // return elementClone;
+//}
+
+function addCard(cardInfo) {
+  const card = new Card(cardInfo);
+  const newCard = card.generateCard();
+
+  elements.prepend(newCard);
 }
-function addImage(param) {
-  elements.prepend(param);
-}
+
+//function addImage(param) {
+//  elements.prepend(param);
+//}
 function submitAddForm(evt) {
   evt.preventDefault();
 
-  addImage(createImage({ link: photoLink.value, name: photoHeading.value }));
+  const cardInfo = { link: photoLink.value, name: photoHeading.value };
+  addCard(cardInfo);
 
   closeSubmitForm();
 }
@@ -155,3 +168,8 @@ profileEditSubmitBtn.addEventListener('submit', submitEditForm);
 newImageSubmitBtn.addEventListener('submit', submitAddForm);
 
 initialImages();
+
+const validatorEditProfile = new FormValidator(validationData, profileEdit);
+const validatorAddCard = new FormValidator(validationData, popupAddImage);
+validatorEditProfile.enableValidation();
+validatorAddCard.enableValidation();

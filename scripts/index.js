@@ -47,6 +47,9 @@ function openPopupEditProfile() {
   openPopup(popupEditProfile);
 }
 function openPopupAddImage() {
+  photoHeading.value = "";
+  photoLink.value = "";
+
   openPopup(popupAddImage);
 }
 
@@ -56,19 +59,10 @@ function closePopup(popupName) {
   document.removeEventListener('keydown', closeByEscape);
 }
 function closeEditForm() {
-  const popupButton = document.querySelector('#edit-profile_submit-button');
   closePopup(popupEditProfile);
-
-  popupButton.classList.add('popup__submit_invalid');
-  popupButton.setAttribute('disabled', true);
 }
 function closeSubmitForm() {
-  const popupButton = document.querySelector('#add-image_submit-button');
   closePopup(popupAddImage);
-  newImageSubmitBtn.reset();
-
-  popupButton.classList.add('popup__submit_invalid');
-  popupButton.setAttribute('disabled', true);
 }
 function closeFullImage() {
   closePopup(popupFull);
@@ -89,51 +83,6 @@ function submitEditForm(evt) {
   closeEditForm();
 }
 
-//добавление фотографий
-function initialImages() {
-  for (let i = 0; i < initialCards.length; i++) {
-    addCard(initialCards[i]);
-  }
-}
-//function createImage(param) {
-//  const elementClone = elementTemplate.querySelector('.element').cloneNode(true);
- /// const elementCloneImage = elementClone.querySelector('.element__photo');
-
- // elementCloneImage.src = param.link;
- // elementCloneImage.alt = param.name;
- // elementClone.querySelector('.element__name').textContent = param.name;
-
-           //like button
- // elementClone.querySelector('.element__like-button').addEventListener('click', function (evt) {
- //   evt.target.classList.toggle('element__like-button_active');
- // });
-           //delete button
- // elementClone.querySelector('.element__delete').addEventListener('click', function (evt) {
- //   elementClone.remove();
- // })
-
-          //раскрытие полной картинки
-  //elementCloneImage.addEventListener('click', function () {
-   // imageFull.querySelector('.popup-image__image').src = param.link;
-   // imageFull.querySelector('.popup-image__heading').textContent = param.name;
-   // imageFull.querySelector('.popup-image__image').alt = param.name;
-
-   // openPopup(imageFull);
- // })
-
- // return elementClone;
-//}
-
-function addCard(cardInfo) {
-  const card = new Card(cardInfo);
-  const newCard = card.generateCard();
-
-  elements.prepend(newCard);
-}
-
-//function addImage(param) {
-//  elements.prepend(param);
-//}
 function submitAddForm(evt) {
   evt.preventDefault();
 
@@ -143,8 +92,32 @@ function submitAddForm(evt) {
   closeSubmitForm();
 }
 
-profileEditBtn.addEventListener('click', openPopupEditProfile);
-newImageBtn.addEventListener('click', openPopupAddImage);
+//добавление фотографий
+function initialImages() {
+  for (let i = 0; i < initialCards.length; i++) {
+    addCard(initialCards[i]);
+  }
+}
+
+function createCard(cardInfo) {
+  const card = new Card(cardInfo, '#element');
+  const newCard = card.generateCard();
+  return newCard;
+}
+
+function addCard(cardInfo) {
+  const card = createCard(cardInfo);
+  elements.prepend(card);
+}
+
+profileEditBtn.addEventListener('click', function () {
+  validatorEditProfile.resetValidation();
+  openPopupEditProfile();
+});
+newImageBtn.addEventListener('click', function () {
+  validatorAddCard.resetValidation();
+  openPopupAddImage();
+});
 
 profileEdit.addEventListener('click', function (evt) {
   if (evt.target.classList.contains('popup__close') || evt.target.classList.contains('popup')) {

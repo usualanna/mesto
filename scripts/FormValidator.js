@@ -2,7 +2,7 @@ export default class FormValidator {
 
   constructor(settings, element) {
     this._settings = settings;
-    this._elemment = element;
+    this._element = element;
     this._formElement = element.querySelector(this._settings.formSelector);
     this._inputList = Array.from(element.querySelectorAll(this._settings.inputSelector));
     this._buttonElement = element.querySelector(this._settings.submitButtonSelector);
@@ -44,6 +44,13 @@ export default class FormValidator {
      });
     })
   }
+
+  resetValidation = () => {
+    this._toggleButton();
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
+  };
 
   enableValidation() {
     this._setEventListeners();

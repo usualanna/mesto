@@ -1,12 +1,14 @@
 import openPopup from "./index.js";
 export default class Card {
-  constructor(data, openPopup) {
+  constructor(data, templateSelector) {
+    this._templateSelector = templateSelector;
     this._name = data.name;
     this._link = data.link;
+    this._imageFull = document.querySelector('.popup-image');
   }
 
   _getTemplate() {
-    const elementTemplate = document.querySelector('#element').content.cloneNode(true);
+    const elementTemplate = document.querySelector(this._templateSelector).content.cloneNode(true);
     
     return elementTemplate;
   }
@@ -22,13 +24,13 @@ export default class Card {
 
   _setEventListeners(imageElm, likeElm, deleteElm) {
     imageElm.addEventListener('click', () => {
-      const imageFull = document.querySelector('.popup-image');
+//      const imageFull = document.querySelector('.popup-image');
 
-      imageFull.querySelector('.popup-image__image').src = this._link;
-      imageFull.querySelector('.popup-image__heading').textContent = this._name;
-      imageFull.querySelector('.popup-image__image').alt = this._name;
+      this._imageFull.querySelector('.popup-image__image').src = this._link;
+      this._imageFull.querySelector('.popup-image__heading').textContent = this._name;
+      this._imageFull.querySelector('.popup-image__image').alt = this._name;
 
-      openPopup(imageFull);
+      openPopup(this._imageFull);
     });
 
     likeElm.addEventListener('click', this._toggleLike);

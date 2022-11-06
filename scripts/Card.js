@@ -5,10 +5,8 @@ export default class Card {
     this._name = data.name;
     this._link = data.link;
     this._imageFull = document.querySelector('.popup-image');
-//    this._imageFullSrc = this._imageFull.querySelector('.popup-image__image').src;
-    this._imageFullSrc = this._imageFull.querySelector('.popup-image__image').src;
-    this._imageFullTxt = this._imageFull.querySelector('.popup-image__heading').textContent
-    this._imageFullAlt = this._imageFull.querySelector('.popup-image__image').alt = this._name;
+
+    this._imageFullImg = this._imageFull.querySelector("img");
   }
 
   _getTemplate() {
@@ -29,11 +27,10 @@ export default class Card {
   _setEventListeners(imageElm, likeElm, deleteElm) {
     imageElm.addEventListener('click', () => {
 
-//      this._imageFull.querySelector('.popup-image__image').src = this._link;
-      this._imageFullSrc = this._link;
+      this._imageFullImg.src = this._link;
 
-      this._imageFullTxt = this._name;
-      this._imageFullAlt = this._name;
+      this._imageFullImg.txt = this._name;
+      this._imageFullImg.alt = this._name;
 
       openPopup(this._imageFull);
     });

@@ -33,14 +33,13 @@ export default class FormValidator {
   }
 
   _setEventListeners() {
-    //const inputList = Array.from(formElement.querySelectorAll(settings.inputSelector));
-
     this._toggleButton();
 
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
-       this._isValid(inputElement);
-       this._toggleButton();
+        this._toggleButton();
+        this._isValid(inputElement);
+       
      });
     })
   }

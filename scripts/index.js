@@ -47,9 +47,6 @@ function openPopupEditProfile() {
   openPopup(popupEditProfile);
 }
 function openPopupAddImage() {
-  photoHeading.value = "";
-  photoLink.value = "";
-
   openPopup(popupAddImage);
 }
 
@@ -60,9 +57,13 @@ function closePopup(popupName) {
 }
 function closeEditForm() {
   closePopup(popupEditProfile);
+  validatorEditProfile.resetValidation();
 }
 function closeSubmitForm() {
   closePopup(popupAddImage);
+  photoHeading.value = "";
+  photoLink.value = "";
+  validatorAddCard.resetValidation();
 }
 function closeFullImage() {
   closePopup(popupFull);
@@ -111,11 +112,10 @@ function addCard(cardInfo) {
 }
 
 profileEditBtn.addEventListener('click', function () {
-  validatorEditProfile.resetValidation();
   openPopupEditProfile();
 });
 newImageBtn.addEventListener('click', function () {
-  validatorAddCard.resetValidation();
+//  validatorAddCard.resetValidation();
   openPopupAddImage();
 });
 

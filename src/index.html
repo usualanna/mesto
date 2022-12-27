@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Место</title>
-  <link rel="stylesheet" href="./pages/index.css">
+<!--  <link rel="stylesheet" href="./pages/index.css"> -->
 </head>
 
 <body class="main">
@@ -16,7 +16,7 @@
   <main>
 
     <section class="profile">
-      <img class="profile__avatar" src="./images/avatar.png" alt="Фотография пользователя" />
+      <img class="profile__avatar" src="<%=require(./images/avatar.png)%>" alt="Фотография пользователя" />
       <div class="profile__info">
         <div class="profile__group">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -65,7 +65,7 @@
     <div class="popup__container">
       <p class="popup__title">Новое место</p>
       <form id="add-image_submit" name="form-add" class="popup__form" novalidate>
-        <input id="heading-input" class="popup__input popup__input_type_heading" type="text" minlength="2" maxlength="30" name="heading" placeholder="Название" required>
+        <input id="heading-input" class="popup__input popup__input_type_heading" type="text" minlength="2" maxlength="30" name="name" placeholder="Название" required>
         <span class="heading-input-error popup__error"></span>
         <input id="link-input" class="popup__input popup__input_type_link" type="url" name="link" placeholder="Ссылка на картинку" required>
         <span class="link-input-error popup__error"></span>
@@ -83,6 +83,6 @@
     </div>
   </div>
 
-  <script type="module" src="./scripts/index.js"></script>
+  <script type="module" src="./pages/index.js"></script>
 </body>
 </html>

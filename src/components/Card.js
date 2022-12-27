@@ -1,12 +1,12 @@
-import openPopup from "./index.js";
 export default class Card {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, open) {
     this._templateSelector = templateSelector;
     this._name = data.name;
     this._link = data.link;
     this._imageFull = document.querySelector('.popup-image');
     this._imageFullImg = this._imageFull.querySelector('.popup-image__image');
-    this._imageFullTxt = this._imageFull.querySelector('.popup-image__heading');   
+    this._imageFullTxt = this._imageFull.querySelector('.popup-image__heading');
+    this._open = open;
   }
 
   _getTemplate() {
@@ -31,7 +31,7 @@ export default class Card {
       this._imageFullTxt.textContent = this._name;
       this._imageFullImg.alt = this._name;
 
-      openPopup(this._imageFull);
+      this._open(this._link, this._name);
     });
 
     likeElm.addEventListener('click', this._toggleLike);

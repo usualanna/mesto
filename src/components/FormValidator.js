@@ -39,7 +39,6 @@ export default class FormValidator {
       inputElement.addEventListener('input', () => {
         this._toggleButton();
         this._isValid(inputElement);
-       
      });
     })
   }
@@ -69,5 +68,10 @@ export default class FormValidator {
       this._buttonElement.classList.remove(this._settings.inactiveButtonClass);
       this._buttonElement.removeAttribute('disabled');
     }
+  }
+
+  disableButton() {
+    this._buttonElement.classList.add(this._settings.inactiveButtonClass);
+    this._buttonElement.setAttribute('disabled', true);
   }
 }

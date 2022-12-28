@@ -21,7 +21,6 @@ export default class Popup{
   }
 
   setEventListeners() {
-  //  this._buttonClose.addEventListener('click', this.close.bind(this));
     document.addEventListener('click', (evt) => {
       if (evt.target.classList.contains('popup-image__close') || evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close') || evt.target.classList.contains('opened')) {
         this.close();

@@ -20,6 +20,11 @@ const popupAddImage = document.querySelector('#popup__add-image');
 const nameInput = document.querySelector('.popup__input_type_name');
 const descriptionInput = document.querySelector('.popup__input_type_description');
 
+const headingInputId = document.querySelector('#heading-input');
+const linkInputId = document.querySelector('#link-input');
+const nameInputId = document.querySelector('#name-input');
+const descriptionInputId = document.querySelector('#description-input');
+
 const validatorEditProfile = new FormValidator(validationData, profileEdit);
 validatorEditProfile.enableValidation();
 
@@ -65,12 +70,16 @@ function setInitialProfileData() {
   descriptionInput.value = userDescription;
 
   validatorEditProfile.disableButton();  
+  validatorEditProfile._hideInputError(nameInputId);
+  validatorEditProfile._hideInputError(descriptionInputId);
 
   popupEdit.open();
 }
 
 newImageBtn.addEventListener('click', () => {
-  validatorAddCard.disableButton();  
+  validatorAddCard.disableButton(); 
+  validatorAddCard._hideInputError(headingInputId);
+  validatorAddCard._hideInputError(linkInputId);
 
   popupAdd.open();
 });

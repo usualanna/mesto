@@ -41,17 +41,18 @@ function createCard(cardInfo) {
 }
 function addCard(cardInfo) {
   const card = createCard(cardInfo);
-  elements.prepend(card);
+
+  cardList.addItem(card);
 }
 
 const popupEdit = new PopupWithForm('#popup__edit-profile', submitEditForm);
 popupEdit.setEventListeners();
+
 function submitEditForm({name, description}) {
   userInfo.setUserInfo(name, description);
 }
 
 const imageFull = new PopupWithImage('#popup__full-image');
-
 imageFull.setEventListeners();
 
 const userInfo = new UserInfo('.profile__name', '.profile__description')
@@ -70,16 +71,16 @@ function setInitialProfileData() {
   descriptionInput.value = userDescription;
 
   validatorEditProfile.disableButton();  
-  validatorEditProfile._hideInputError(nameInputId);
-  validatorEditProfile._hideInputError(descriptionInputId);
+  validatorEditProfile.hideInputError(nameInputId);
+  validatorEditProfile.hideInputError(descriptionInputId);
 
   popupEdit.open();
 }
 
 newImageBtn.addEventListener('click', () => {
   validatorAddCard.disableButton(); 
-  validatorAddCard._hideInputError(headingInputId);
-  validatorAddCard._hideInputError(linkInputId);
+  validatorAddCard.hideInputError(headingInputId);
+  validatorAddCard.hideInputError(linkInputId);
 
   popupAdd.open();
 });

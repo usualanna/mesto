@@ -7,21 +7,23 @@ export default class Card {
     this._imageFullImg = this._imageFull.querySelector('.popup-image__image');
     this._imageFullTxt = this._imageFull.querySelector('.popup-image__heading');
     this._open = open;
+    this._element = document.querySelector('.element');
   }
 
   _getTemplate() {
-    const elementTemplate = document.querySelector(this._templateSelector).content.cloneNode(true);
-    
-    return elementTemplate;
+    const elementTemplate = document.querySelector(this._templateSelector).content;
+    const elementClone = elementTemplate.querySelector('.element').cloneNode(true);
+
+    return elementClone;
   }
 
   _toggleLike(evt) {
     evt.target.classList.toggle('element__like-button_active');
   }
 
-  _deleteCard(evt) {
-    const deletedCard = evt.target.closest('.element');
-    deletedCard.remove();
+  _deleteCard() {
+    this._element.remove();
+    this._element = null;
   }
 
   _setEventListeners(imageElm, likeElm, deleteElm) {
@@ -35,22 +37,22 @@ export default class Card {
     });
 
     likeElm.addEventListener('click', this._toggleLike);
-    deleteElm.addEventListener('click', this._deleteCard);
+    deleteElm.addEventListener('click', this._deleteCard.bind(this));
   }
 
   generateCard() {
-    const elementClone = this._getTemplate();
-    const imageElm = elementClone.querySelector('.element__photo');
+    this._element = this._getTemplate();
+    const imageElm = this._element.querySelector('.element__photo');
 
     imageElm.src = this._link;
     imageElm.alt = this._name;
-    elementClone.querySelector('.element__name').textContent = this._name;
+    this._element.querySelector('.element__name').textContent = this._name;
 
-    const likeElm = elementClone.querySelector('.element__like-button');
-    const deleteElm = elementClone.querySelector('.element__delete');
+    const likeElm = this._element.querySelector('.element__like-button');
+    const deleteElm = this._element.querySelector('.element__delete');
 
     this._setEventListeners(imageElm, likeElm, deleteElm);
 
-    return elementClone;
+    return this._element;
   }
 }
